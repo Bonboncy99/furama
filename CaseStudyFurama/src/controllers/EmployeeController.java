@@ -1,13 +1,13 @@
 package controllers;
 
 import services.IEmployeeService;
-import services.impl.EmployeeServiceImpl;
+import services.impl.people.EmployeeServiceImpl;
 
 import java.util.Scanner;
 
 public class EmployeeController {
-    static Scanner scanner = new Scanner(System.in);
-    static  IEmployeeService employeeService = new EmployeeServiceImpl();
+    private static Scanner scanner = new Scanner(System.in);
+    private static IEmployeeService employeeService = new EmployeeServiceImpl();
     public static void displayEmployee() {
         do {
             System.out.println("Chọn chức năng" +
@@ -30,7 +30,7 @@ public class EmployeeController {
                     employeeService.update();
                     break;
                 case "4":
-                   return;
+                    return;
                 default:
                     System.err.println("Nhập sai, chọn lại");
             }

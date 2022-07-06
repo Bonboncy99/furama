@@ -2,7 +2,7 @@ package controllers;
 
 import java.util.Scanner;
 public class FuramaController {
-    static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
     public static void displayMainMenu() {
         do {
             System.out.println("Chọn chức năng: " +

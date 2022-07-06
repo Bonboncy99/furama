@@ -1,45 +1,30 @@
-package services.impl;
+package services.impl.facility;
+
+import models.Facility.Facility;
 import services.IFacilityService;
 import services.IHouseService;
 import services.IRoomService;
 import services.IVillaService;
+import util.ReadAndWriteCSV;
+
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public class FacilityServiceImpl implements IFacilityService {
-    Scanner scanner = new Scanner(System.in);
-    IVillaService villaService = new VillaServiceImpl();
-    IHouseService houseService = new HouseServiceImpl();
-    IRoomService roomService = new RoomServiceImpl();
+    private Scanner scanner = new Scanner(System.in);
+    private IVillaService villaService = new VillaServiceImpl();
+    private IHouseService houseService = new HouseServiceImpl();
+    private IRoomService roomService = new RoomServiceImpl();
+    private final String FILE_FACILITY_CSV = "src/data/Facility.csv";
 
     @Override
     public void display() {
-        do {
-            System.out.println("Chọn chức năng\n" +
-                    "1. Display Villa\n" +
-                    "2. Display House\n" +
-                    "3. Display Room\n" +
-                    "4. Back to menu");
-            String choice = scanner.nextLine();
-            switch (choice) {
-                case "1":
-                    System.out.println("Display Villa");
-                    villaService.display();
-                    break;
-                case "2":
-                    System.out.println("Display House");
-                    houseService.display();
-                    break;
-                case "3":
-                    System.out.println("Display Room");
-                    roomService.display();
-                    break;
-                case "4":
-                    return;
-                default:
-                    System.err.println("Chọn sai, nhập lại");
-
-            }
-        } while (true);
+        Map<Facility, Integer> facilityIntegerMap = ReadAndWriteCSV.readFacilityFromCSV(FILE_FACILITY_CSV);
+        Set<Facility> facilitySet = facilityIntegerMap.keySet();
+        for (Facility facility : facilitySet) {
+            System.out.println(facility);
+        }
     }
 
     @Override
@@ -69,7 +54,6 @@ public class FacilityServiceImpl implements IFacilityService {
                 default:
                     System.err.println("Nhập sai, chọn lại");
             }
-
         } while (true);
     }
 

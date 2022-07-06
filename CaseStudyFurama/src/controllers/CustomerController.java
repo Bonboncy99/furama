@@ -1,14 +1,14 @@
 package controllers;
 
 import services.ICustomerService;
-import services.impl.CustomerServiceImpl;
+import services.impl.people.CustomerServiceImpl;
 
 import java.util.Scanner;
 
 public class CustomerController {
-        public static void displayCustomer() {
-            ICustomerService customerService =  new CustomerServiceImpl();
-        Scanner scanner = new Scanner(System.in);
+    private static ICustomerService customerService = new CustomerServiceImpl();
+    private static Scanner scanner = new Scanner(System.in);
+    public static void displayCustomer() {
         do {
             System.out.println("Chọn chức năng: " +
                     "\n 1. Display list customers" +
@@ -27,9 +27,10 @@ public class CustomerController {
                     break;
                 case "3":
                     System.out.println("Edit customer");
+                    customerService.update();
                     break;
                 case "4":
-                   return;
+                    return;
                 default:
                     System.err.println("Chọn sai, nhập lại");
             }

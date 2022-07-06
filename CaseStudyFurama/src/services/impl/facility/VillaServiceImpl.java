@@ -1,6 +1,7 @@
-package services.impl;
+package services.impl.facility;
 
 import common.EnterFacilityInfo;
+import models.Facility.Facility;
 import models.Facility.Villa;
 import services.IVillaService;
 import util.ReadAndWriteCSV;
@@ -11,6 +12,8 @@ import java.util.Set;
 
 public class VillaServiceImpl implements IVillaService {
     public static final String FILE_VILLA_CSV = "src/data/Village.csv";
+    private static final String FILE_FACILITY_CSV = "src/data/Facility.csv";
+
 
     @Override
     public void display() {
@@ -23,7 +26,8 @@ public class VillaServiceImpl implements IVillaService {
 
     @Override
     public void add() {
-        Map<Villa, Integer> villaMap = new LinkedHashMap();
+        Map<Facility, Integer> facilityIntegerMap = new LinkedHashMap();
+        String serviceCode = EnterFacilityInfo.enterServiceVillaCode();
         String serviceName = EnterFacilityInfo.enterServiceName();
         String usableArea = EnterFacilityInfo.enterUsableArea();
         String fee = EnterFacilityInfo.enterFee();
@@ -32,8 +36,8 @@ public class VillaServiceImpl implements IVillaService {
         String roomStandard = EnterFacilityInfo.enterRoomStandard();
         String poolArea = EnterFacilityInfo.enterPoolArea();
         String floor = EnterFacilityInfo.enterFloor();
-        villaMap.put(new Villa(serviceName, usableArea, fee, maxPeople, rentalType, roomStandard, poolArea, floor), 0);
-        ReadAndWriteCSV.writeVillatoCSV(FILE_VILLA_CSV, villaMap, true);
+        facilityIntegerMap.put(new Villa(serviceCode,serviceName, usableArea, fee, maxPeople, rentalType, roomStandard, poolArea, floor), 0);
+        ReadAndWriteCSV.writeFacilityToCSV(FILE_FACILITY_CSV, facilityIntegerMap, true);
     }
 
     @Override

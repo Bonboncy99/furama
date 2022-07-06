@@ -27,7 +27,11 @@ public class EnterPersonInformation {
             try {
                 System.out.println("Nhập ngày sinh(dd/MM/yyyy)");
                 birthday = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                return birthday;
+                int age = birthday.until(LocalDate.now()).getYears();
+                System.out.println(age);
+                if (age >18 && age<100){
+                    return birthday;
+                }
             } catch (DateTimeParseException e){
                 System.err.println("Nhập sai định dạng");
             }
@@ -65,10 +69,10 @@ public class EnterPersonInformation {
         do {
             System.out.println("Nhập số CMND của nhân viên (9 chữ số)");
             employeeIdentity = scanner.nextLine();
-            if (PeopleChecking.checkEmployeeIdentity(employeeIdentity)){
-                System.err.println("Số CMND đã tồn tại");
-            } else if (!PeopleChecking.checkRegexIdentity(employeeIdentity)){
+            if (!PeopleChecking.checkRegexIdentity(employeeIdentity)){
                 System.err.println("Nhập sai định dạng");
+            } else if (PeopleChecking.checkEmployeeIdentity(employeeIdentity)){
+                System.err.println("Số CMND đã tồn tại");
             }
             else {
                 return employeeIdentity;
@@ -95,7 +99,7 @@ public class EnterPersonInformation {
     public static String enterPhone() {
         String phone;
         do {
-            System.out.println("Nhập số điện thoại XX -XXXXXXXXXX");
+            System.out.println("Nhập số điện thoại (0/84)XXXXXXXXX");
             phone = scanner.nextLine();
             if (PeopleChecking.checkRegexPhone(phone)) {
                 return phone;
@@ -267,23 +271,17 @@ public class EnterPersonInformation {
         return scanner.nextLine();
     }
 
-    public static LocalDate createBirthDay (){
-        LocalDate date;
-        do {
-            date = enterBirthday();
-            if (PeopleChecking.checkBirthday(date)){
-                return date;
-            }else {
-                System.err.println("Tuổi phải từ 18-100");
-            }
-        } while (true);
-    }
-
-    public static void main(String[] args) {
-
-        createBirthDay();
-    }
-
+//    public static LocalDate createBirthDay (){
+//        LocalDate date;
+//        do {
+//            date = enterBirthday();
+//            if (PeopleChecking.checkBirthday(date)){
+//                return date;
+//            }else {
+//                System.err.println("Tuổi phải từ 18-100");
+//            }
+//        } while (true);
+//    }
 //
 
 }

@@ -1,4 +1,4 @@
-package services.impl;
+package services.impl.people;
 
 import common.EnterPersonInformation;
 import models.Person.Customer;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class CustomerServiceImpl implements ICustomerService {
     static Scanner scanner = new Scanner(System.in);
-    static private final String FILE_CUSTOMER_CSV = "src/data/Customer.csv";
+    static private final String FILE_CUSTOMER_CSV = "src/data/people/Customer.csv";
 
     @Override
     public void display() {
@@ -60,48 +60,48 @@ public class CustomerServiceImpl implements ICustomerService {
                             "\n 7. Loại Khách hàng" +
                             "\n 8. Địa chỉ Khách hàng" +
                             "\n 9. Thoát");
-                    int choice = Integer.parseInt(scanner.nextLine());
+                    String choice = scanner.nextLine();
                     switch (choice) {
-                        case 1:
+                        case "1":
                             String name = EnterPersonInformation.enterName();
                             customer.setName(name);
                             break;
-                        case 2:
+                        case "2":
                             LocalDate birthday = EnterPersonInformation.enterBirthday();
                             customer.setBirthday(birthday);
                             break;
-                        case 3:
+                        case "3":
                             String gender = EnterPersonInformation.createGender();
                             customer.setGender(gender);
                             break;
-                        case 4:
+                        case "4":
                             String indentityNumber = EnterPersonInformation.enterCustomerIdentity();
                             customer.setIdentityNumber(indentityNumber);
                             break;
-                        case 5:
+                        case "5":
                             String phone = EnterPersonInformation.enterPhone();
                             customer.setPhone(phone);
                             break;
-                        case 6:
+                        case "6":
                             String email = EnterPersonInformation.enterEmail();
                             customer.setEmail(email);
                             break;
-                        case 7:
+                        case "7":
                             String customerType = EnterPersonInformation.createCustomertype();
                             customer.setCustomerType(customerType);
                             break;
-                        case 8:
+                        case "8":
                             String address = EnterPersonInformation.enterAddress();
                             customer.setAddress(address);
                             break;
-                        case 9:
+                        case "9":
                             return;
                         default:
                             System.err.println("Nhập sai,chọn lại");
                     }
+                    ReadAndWriteCSV.writeCustomerToCSV(FILE_CUSTOMER_CSV, customerList, false);
                 } while (true);
             }
         }
-        ReadAndWriteCSV.writeCustomerToCSV(FILE_CUSTOMER_CSV, customerList, false);
     }
 }

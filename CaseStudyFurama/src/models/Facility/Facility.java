@@ -1,6 +1,7 @@
 package models.Facility;
 
 public abstract class Facility {
+    private String serviceCode;
     private String serviceName;
     private String usableArea;
     private String fee;
@@ -10,12 +11,21 @@ public abstract class Facility {
     public Facility() {
     }
 
-    public Facility(String serviceName, String usableArea, String fee, String maxPeople, String rentalType) {
+    public Facility(String serviceCode, String serviceName, String usableArea, String fee, String maxPeople, String rentalType) {
+        this.serviceCode = serviceCode;
         this.serviceName = serviceName;
         this.usableArea = usableArea;
         this.fee = fee;
         this.maxPeople = maxPeople;
         this.rentalType = rentalType;
+    }
+
+    public String getServiceCode() {
+        return serviceCode;
+    }
+
+    public void setServiceCode(String serviceCode) {
+        this.serviceCode = serviceCode;
     }
 
     public String getServiceName() {
@@ -60,15 +70,17 @@ public abstract class Facility {
 
     @Override
     public String toString() {
-        return  "serviceName='" + serviceName + '\'' +
-                ", usableArea=" + usableArea +
-                ", fee=" + fee +
-                ", maxPeople=" + maxPeople +
-                ", rentalType='" + rentalType + '\'' +
-                ", ";
+        return "serviceCode='" + serviceCode + '\'' +
+                ", serviceName='" + serviceName + '\'' +
+                ", usableArea='" + usableArea + '\'' +
+                ", fee='" + fee + '\'' +
+                ", maxPeople='" + maxPeople + '\'' +
+                ", rentalType='" + rentalType;
     }
+
     public  String getInfoToCSV(){
-        return serviceName + ","+
+        return serviceCode+","+
+                serviceName + ","+
                 usableArea + ","+
                 fee + ","+
                 maxPeople + ","+

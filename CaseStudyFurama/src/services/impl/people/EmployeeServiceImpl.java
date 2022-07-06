@@ -1,4 +1,4 @@
-package services.impl;
+package services.impl.people;
 
 import common.EnterPersonInformation;
 import models.Person.Employee;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class EmployeeServiceImpl implements IEmployeeService {
     static Scanner scanner = new Scanner(System.in);
-   public static final String FILE_EMPLOYEE_CSV = "src/data/Employee.csv";
+   public static final String FILE_EMPLOYEE_CSV = "src\\data\\people\\Employee.csv";
 
     @Override
     public void display() {
@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public void add() {
         List<Employee>employeeList = new ArrayList<>();
         String name = EnterPersonInformation.enterName();
-        LocalDate birthday = EnterPersonInformation.createBirthDay();
+        LocalDate birthday = EnterPersonInformation.enterBirthday();
         String gender = EnterPersonInformation.createGender();
         String indentityNumber = EnterPersonInformation.enterEmployeeIdentity();
         String phone = EnterPersonInformation.enterPhone();
@@ -63,47 +63,46 @@ public class EmployeeServiceImpl implements IEmployeeService {
                             "\n 8. Vị trí" +
                             "\n 9. Lương" +
                             "\n 10. Exit ");
-                    int choice = Integer.parseInt(scanner.nextLine());
+                    String choice = scanner.nextLine();
                     switch (choice) {
-                        case 1:
+                        case "1":
                             String name = EnterPersonInformation.enterName();
                             employeeList.get(i).setName(name);
                             break;
-                        case 2:
-                            LocalDate birthday = EnterPersonInformation.createBirthDay();
+                        case "2":
+                            LocalDate birthday = EnterPersonInformation.enterBirthday();
                             employeeList.get(i).setBirthday(birthday);
                             break;
-                        case 3:
+                        case "3":
                             String gender = EnterPersonInformation.createGender();
                             employeeList.get(i).setGender(gender);
                             break;
-                        case 4:
+                        case "4":
                             String indentityNumber = EnterPersonInformation.enterEmployeeIdentity();
                             employeeList.get(i).setIdentityNumber(indentityNumber);
                             break;
-                        case 5:
+                        case "5":
                             String phone = EnterPersonInformation.enterPhone();
                             employeeList.get(i).setPhone(phone);
                             break;
-                        case 6:
+                        case "6":
                             String email = EnterPersonInformation.enterEmail();
                             employeeList.get(i).setEmail(email);
                             break;
-                        case 7:
+                        case "7":
                             String level = EnterPersonInformation.createLevel();
                             employeeList.get(i).setLevel(level);
                             break;
-                        case 8:
+                        case "8":
                             String position = EnterPersonInformation.createPosition();
                             employeeList.get(i).setPosition(position);
                             break;
-                        case 9:
+                        case "9":
                             double salary = Double.parseDouble(EnterPersonInformation.enterEmployeeSalary());
                             employeeList.get(i).setSalary(salary);
                             break;
-                        case 10:
-//                            return;
-
+                        case "10":
+                            return;
                         default:
                             System.out.println("Nhập sai, chọn lại");
                     }

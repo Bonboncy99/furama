@@ -9,6 +9,50 @@ public class EnterFacilityInfo {
 
     static Scanner scanner = new Scanner(System.in);
 
+    public static String enterServiceVillaCode() {
+        String serviceCode;
+        do {
+            System.out.println("Nhập tên dịch vụ (Mã dịch vụ phải đúng định dạng: SVVL-YYYY, với YYYY là các số từ 0-9,)");
+            serviceCode = scanner.nextLine();
+            if (!FacilityCheck.checkRegexVillaCode(serviceCode)) {
+                System.out.println("Mã dịch vụ sai định dạng");
+            }else if (FacilityCheck.checkServiceCode(serviceCode)){
+                System.out.println("Mã dịch vụ đã tồn tại");
+            } else {
+                return serviceCode;
+            }
+        } while (true);
+    }
+
+    public static String enterServiceHouseCode() {
+        String serviceCode;
+        do {
+            System.out.println("Nhập tên dịch vụ (Mã dịch vụ phải đúng định dạng: SVHO-YYYY, với YYYY là các số từ 0-9,)");
+            serviceCode = scanner.nextLine();
+            if (!FacilityCheck.checkRegexHouseCode(serviceCode)) {
+                System.out.println("Mã dịch vụ sai định dạng");
+            }else if (FacilityCheck.checkServiceCode(serviceCode)){
+                System.out.println("Mã dịch vụ đã tồn tại");
+            } else {
+                return serviceCode;
+            }
+        } while (true);
+    }
+
+    public static String enterServiceRoomCode() {
+        String serviceCode;
+        do {
+            System.out.println("Nhập tên dịch vụ (Mã dịch vụ phải đúng định dạng: SVRO-YYYY, với YYYY là các số từ 0-9,)");
+            serviceCode = scanner.nextLine();
+            if (!FacilityCheck.checkRegexRoomCode(serviceCode)) {
+                System.out.println("Mã dịch vụ sai định dạng");
+            }else if (FacilityCheck.checkServiceCode(serviceCode)){
+                System.out.println("Mã dịch vụ đã tồn tại");
+            } else {
+                return serviceCode;
+            }
+        } while (true);
+    }
 
     public static String enterServiceName() {
         String serviceName;
@@ -126,6 +170,19 @@ public class EnterFacilityInfo {
             }
         } while (true);
     }
+
     public static void main(String[] args) {
+//      do {
+//          try {
+//              System.out.println("nhap");
+//              int are = Integer.parseInt(scanner.nextLine());
+//              if (are > 30) {
+//                  break;
+//              }
+//          }catch (NumberFormatException e){
+//              System.err.println("adasd");
+//          }
+//      }while (true);
+
     }
 }

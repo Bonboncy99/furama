@@ -1,13 +1,15 @@
 package controllers;
 
-import services.impl.FacilityServiceImpl;
+import services.IFacilityService;
+import services.impl.facility.FacilityServiceImpl;
 
 import java.util.Scanner;
 
 public class FacilityController {
+    private static IFacilityService facilityService = new FacilityServiceImpl();
+    private static Scanner scanner = new Scanner(System.in);
     public static void displayFacility() {
-        FacilityServiceImpl facilityService = new FacilityServiceImpl();
-        Scanner scanner = new Scanner(System.in);
+
         do {
             System.out.println("Chọn chức năng" +
                     "\n  1 Display list facility" +

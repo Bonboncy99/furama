@@ -1,4 +1,4 @@
-package util;
+package util.khong_dung_method_chung;
 
 import models.Facility.Villa;
 
@@ -35,8 +35,8 @@ public class ReadAndWriteVilla {
             bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
                 String[] arr = line.split(",");
-                Villa villa = new Villa(arr[0],arr[1],arr[2],arr[3],arr[4],arr[5],arr[6],arr[7]);
-                villaIntegerMap.put(villa,Integer.parseInt(arr[8]));
+                Villa villa = new Villa(arr[0],arr[1],arr[2],arr[3],arr[4],arr[5],arr[6],arr[7],arr[8]);
+                villaIntegerMap.put(villa,Integer.parseInt(arr[9]));
             }
             bufferedReader.close();
         } catch (FileNotFoundException e) {
